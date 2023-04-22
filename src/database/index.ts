@@ -8,7 +8,7 @@ const sequelize: Sequelize = new Sequelize("biblioteca", "postgres", "xtm440", {
 
 (async () => {
   try {
-    await sequelize.authenticate().then(() => {
+    await sequelize.sync().then(() => {
       console.log("Conectado ao postgres");
     });
   } catch (error) {

@@ -8,12 +8,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const Livro_1 = __importDefault(require("../database/Livro"));
+const Livro = require("../database/Livro");
 const router = (0, express_1.Router)();
 router.get("/", (req, res) => {
     res.render("index");
@@ -21,7 +18,7 @@ router.get("/", (req, res) => {
 router.post("/salvar", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { isbn, titulo, ano_editora, autores } = req.body;
     try {
-        yield Livro_1.default.create({
+        yield Livro.create({
             isbn,
             titulo,
             ano_editora,
@@ -30,7 +27,7 @@ router.post("/salvar", (req, res) => __awaiter(void 0, void 0, void 0, function*
         res.redirect("/");
     }
     catch (error) {
-        res.status(500).json({ error: "Erro ao criar livro" });
+        res.send("Erro ao salvar livro!");
     }
 }));
 module.exports = router;

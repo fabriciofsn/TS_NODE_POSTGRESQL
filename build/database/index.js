@@ -17,7 +17,7 @@ const sequelize = new sequelize_1.Sequelize("biblioteca", "postgres", "xtm440", 
 });
 (() => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield sequelize.authenticate().then(() => {
+        yield sequelize.sync().then(() => {
             console.log("Conectado ao postgres");
         });
     }

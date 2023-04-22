@@ -1,5 +1,5 @@
 import { Request, Response, Router } from "express";
-import Livro from "../database/Livro";
+const Livro = require("../database/Livro");
 
 const router: Router = Router();
 
@@ -19,7 +19,7 @@ router.post("/salvar", async (req: Request, res: Response) => {
     });
     res.redirect("/");
   } catch (error) {
-    res.status(500).json({ error: "Erro ao criar livro" });
+    res.send("Erro ao salvar livro!");
   }
 });
 
