@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Cadastrar</title>
   </head>
   <body>
     <style>
@@ -24,18 +24,41 @@
         margin: 5px 0;
         width: 100%;
       }
+      a {
+        text-decoration: none;
+        font-size: 1.5rem;
+        border: 1px solid #198754;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        background-color: #198754;
+        color: white;
+      }
+      input:last-of-type {
+        background-color: #198754;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        margin-left: 10px;
+      }
     </style>
-    <form method="POST" action="salvar">
-      <h1>Cadastrar Livro</h1>
-      <label for="nome">ISBN:</label>
-      <input type="text" id="nome" name="isbn" required />
-      <label for="titulo">Título:</label>
-      <input type="text" id="titulo" name="titulo" required />
-      <label for="ano_editora">Ano editora:</label>
-      <input type="text" id="ano_editora" name="ano_editora" required />
-      <label for="autor">Autores:</label>
-      <input type="text" id="autor" name="autores" required />
-      <input type="submit" value="Enviar" />
-    </form>
+    <div>
+      <div style="text-align: center; margin: 5px">
+        <a href="/livros">Livros Cadastrados</a>
+      </div>
+      <form method="POST" action="salvar">
+        <h1>Cadastrar Livro</h1>
+        <label for="nome">ISBN:</label>
+        <input type="text" id="nome" name="isbn" required />
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" name="titulo" required />
+        <label for="ano_editora">Ano editora:</label>
+        <input type="text" id="ano_editora" name="ano_editora" required />
+        <label for="autor">Autores:</label>
+        <input type="text" id="autor" name="autores" required />
+        <input type="submit" value="Enviar" />
+      </form>
+    </div>
   </body>
 </html>

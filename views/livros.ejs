@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Livros</title>
+  </head>
+  <body>
+    <style>
+      * {
+        font-family: sans-serif;
+      }
+      body {
+        background-color: #ccc;
+        text-align: center;
+      }
+
+      input {
+        display: block;
+        padding: 0.5rem;
+        outline: none;
+        margin: 5px 0;
+        width: 100%;
+      }
+      .table {
+        text-align: center;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+      table {
+        border-collapse: collapse;
+      }
+      a {
+        text-decoration: none;
+        font-size: 1.5rem;
+        border: 1px solid #198754;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        background-color: #198754;
+        color: white;
+      }
+      th,
+      td {
+        padding: 0.5rem;
+      }
+    </style>
+    <div style="margin: 15px 0">
+      <a href="/">Cadastrar Livro</a>
+    </div>
+    <h1>Livros Cadastrados</h1>
+    <div class="table">
+      <table border="1">
+        <tr>
+          <th>ISBN</th>
+          <th>Título</th>
+          <th>Ano editora</th>
+          <th>Autores</th>
+        </tr>
+
+        <% livros.forEach(livro =>{ %>
+        <tr>
+          <td><%=livro.isbn %></td>
+          <td><%=livro.titulo%></td>
+          <td><%=livro.ano_editora%></td>
+          <td><%=livro.autores%></td>
+        </tr>
+        <% }) %>
+      </table>
+    </div>
+  </body>
+</html>

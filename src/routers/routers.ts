@@ -17,10 +17,15 @@ router.post("/salvar", async (req: Request, res: Response) => {
       ano_editora,
       autores,
     });
-    res.redirect("/");
+    res.redirect("/livros");
   } catch (error) {
     res.send("Erro ao salvar livro!");
   }
+});
+
+router.get("/livros", async (req: Request, res: Response) => {
+  const livros: Promise<[]> = await Livro.findAll();
+  res.render("livros", { livros });
 });
 
 module.exports = router;

@@ -16,3 +16,4 @@ server.use(body_parser_1.default.json());
 server.use(body_parser_1.default.urlencoded({ extended: true }));
 server.use("/", router);
 server.use("/salvar", router);
+server.use("/livros", router);

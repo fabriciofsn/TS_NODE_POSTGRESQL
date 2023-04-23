@@ -13,5 +13,6 @@ server.use(bodyParser.urlencoded({ extended: true }));
 
 server.use("/", router);
 server.use("/salvar", router);
+server.use("/livros", router);
 
 export { server };

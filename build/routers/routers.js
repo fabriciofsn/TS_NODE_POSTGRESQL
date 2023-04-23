@@ -24,10 +24,14 @@ router.post("/salvar", (req, res) => __awaiter(void 0, void 0, void 0, function*
             ano_editora,
             autores,
         });
-        res.redirect("/");
+        res.redirect("/livros");
     }
     catch (error) {
         res.send("Erro ao salvar livro!");
     }
+}));
+router.get("/livros", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const livros = yield Livro.findAll();
+    res.render("livros", { livros });
 }));
 module.exports = router;
