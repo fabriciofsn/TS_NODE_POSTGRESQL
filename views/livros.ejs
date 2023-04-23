@@ -64,10 +64,36 @@
           <td><%=livro.isbn %></td>
           <td><%=livro.titulo%></td>
           <td><%=livro.ano_editora%></td>
-          <td><%=livro.autores%></td>
+          <td>
+            <%=livro.autores%><i
+              style="color: rgb(0, 94, 255); margin: 0 5px; cursor: pointer"
+              class="fa-regular fa-pen-to-square editar"
+            ></i>
+            <i
+              id="<%=livro.isbn%>"
+              style="color: rgb(0, 94, 255); cursor: pointer"
+              class="fa-solid fa-trash-can delete"
+            ></i>
+          </td>
         </tr>
         <% }) %>
       </table>
     </div>
+
+    <script>
+      const delet = document.querySelectorAll(".delete");
+
+      let deletar = false;
+      delet.forEach((del) => {
+        del.addEventListener("click", () => {
+          deletar = confirm("Desejar deletar este livro do banco de dados?");
+        });
+      });
+    </script>
+
+    <script
+      src="https://kit.fontawesome.com/398f4eaf2d.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
