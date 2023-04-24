@@ -28,4 +28,14 @@ router.get("/livros", async (req: Request, res: Response) => {
   res.render("livros", { livros });
 });
 
+router.get("/deletar/:isbn", async (req: Request, res: Response) => {
+  let isbn = req.params.isbn;
+
+  await Livro.destroy({
+    where: { isbn },
+  }).then(() => {
+    res.redirect("/livros");
+  });
+});
+
 module.exports = router;

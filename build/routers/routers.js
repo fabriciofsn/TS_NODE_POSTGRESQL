@@ -34,4 +34,12 @@ router.get("/livros", (req, res) => __awaiter(void 0, void 0, void 0, function* 
     const livros = yield Livro.findAll();
     res.render("livros", { livros });
 }));
+router.get("/deletar/:isbn", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    let isbn = req.params.isbn;
+    yield Livro.destroy({
+        where: { isbn },
+    }).then(() => {
+        res.redirect("/livros");
+    });
+}));
 module.exports = router;

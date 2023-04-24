@@ -50,45 +50,52 @@
       <a href="/">Cadastrar Livro</a>
     </div>
     <h1>Livros Cadastrados</h1>
-    <div class="table">
-      <table border="1">
-        <tr>
-          <th>ISBN</th>
-          <th>Título</th>
-          <th>Ano editora</th>
-          <th>Autores</th>
-        </tr>
+    <form method="get" action="deletar">
+      <div class="table">
+        <table border="1">
+          <tr>
+            <th>ISBN</th>
+            <th>Título</th>
+            <th>Ano editora</th>
+            <th>Autores</th>
+          </tr>
 
-        <% livros.forEach(livro =>{ %>
-        <tr>
-          <td><%=livro.isbn %></td>
-          <td><%=livro.titulo%></td>
-          <td><%=livro.ano_editora%></td>
-          <td>
-            <%=livro.autores%><i
-              style="color: rgb(0, 94, 255); margin: 0 5px; cursor: pointer"
-              class="fa-regular fa-pen-to-square editar"
-            ></i>
-            <i
-              id="<%=livro.isbn%>"
-              style="color: rgb(0, 94, 255); cursor: pointer"
-              class="fa-solid fa-trash-can delete"
-            ></i>
-          </td>
-        </tr>
-        <% }) %>
-      </table>
-    </div>
+          <% livros.forEach(livro =>{ %>
+          <tr>
+            <td><%=livro.isbn %></td>
+            <td><%=livro.titulo%></td>
+            <td><%=livro.ano_editora%></td>
+            <td>
+              <%=livro.autores%>
+              <button
+                id="delete"
+                style="background-color: transparent; border: none"
+              >
+                <i
+                  id="<%=livro.isbn%>"
+                  style="
+                    color: rgb(0, 94, 255);
+                    cursor: pointer;
+                    font-size: 1rem;
+                  "
+                  class="fa-solid fa-trash-can"
+                ></i>
+              </button>
+            </td>
+          </tr>
+          <% }) %>
+        </table>
+      </div>
+    </form>
 
     <script>
-      const delet = document.querySelectorAll(".delete");
+      function deleteTable(form) {
+        let confirme = confirm("Deseja deletar este livro do banco de dados?");
 
-      let deletar = false;
-      delet.forEach((del) => {
-        del.addEventListener("click", () => {
-          deletar = confirm("Desejar deletar este livro do banco de dados?");
-        });
-      });
+        if (confirme) {
+          form.submit();
+        }
+      }
     </script>
 
     <script
