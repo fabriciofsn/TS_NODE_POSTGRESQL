@@ -18,3 +18,5 @@ server.use("/", router);
 server.use("/salvar", router);
 server.use("/livros", router);
 server.use("/deletar", router);
+server.use("/editar", router);
+server.use("/atualizar", router);

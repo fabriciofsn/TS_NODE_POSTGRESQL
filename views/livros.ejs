@@ -32,7 +32,7 @@
       table {
         border-collapse: collapse;
       }
-      a {
+      .cadastro {
         text-decoration: none;
         font-size: 1.5rem;
         border: 1px solid #198754;
@@ -47,30 +47,40 @@
       }
     </style>
     <div style="margin: 15px 0">
-      <a href="/">Cadastrar Livro</a>
+      <a class="cadastro" href="/">Cadastrar Livro</a>
     </div>
     <h1>Livros Cadastrados</h1>
-    <form method="get" action="deletar">
-      <div class="table">
-        <table border="1">
-          <tr>
-            <th>ISBN</th>
-            <th>Título</th>
-            <th>Ano editora</th>
-            <th>Autores</th>
-          </tr>
 
-          <% livros.forEach(livro =>{ %>
-          <tr>
-            <td><%=livro.isbn %></td>
-            <td><%=livro.titulo%></td>
-            <td><%=livro.ano_editora%></td>
-            <td>
-              <%=livro.autores%>
-              <button
-                id="delete"
-                style="background-color: transparent; border: none"
-              >
+    <div class="table">
+      <table border="1">
+        <tr>
+          <th>ISBN</th>
+          <th>Título</th>
+          <th>Ano editora</th>
+          <th>Autores</th>
+        </tr>
+
+        <% livros.forEach(livro =>{ %>
+        <tr>
+          <td><%=livro.isbn %></td>
+          <td><%=livro.titulo%></td>
+          <td><%=livro.ano_editora%></td>
+          <td>
+            <%=livro.autores%>
+            <a href="/editar/<%=livro.isbn%>">
+              <button style="background-color: transparent; border: none">
+                <i
+                  style="
+                    color: rgb(0, 94, 255);
+                    cursor: pointer;
+                    font-size: 1rem;
+                  "
+                  class="fa-solid fa-pen-to-square"
+                ></i>
+              </button>
+            </a>
+            <a href="/deletar/<%=livro.isbn%>">
+              <button style="background-color: transparent; border: none">
                 <i
                   id="<%=livro.isbn%>"
                   style="
@@ -79,24 +89,15 @@
                     font-size: 1rem;
                   "
                   class="fa-solid fa-trash-can"
-                ></i>
-              </button>
-            </td>
-          </tr>
-          <% }) %>
-        </table>
-      </div>
-    </form>
+                ></i></button
+            ></a>
+          </td>
+        </tr>
+        <% }) %>
+      </table>
+    </div>
 
-    <script>
-      function deleteTable(form) {
-        let confirme = confirm("Deseja deletar este livro do banco de dados?");
-
-        if (confirme) {
-          form.submit();
-        }
-      }
-    </script>
+    <script></script>
 
     <script
       src="https://kit.fontawesome.com/398f4eaf2d.js"

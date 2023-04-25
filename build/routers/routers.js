@@ -24,22 +24,65 @@ router.post("/salvar", (req, res) => __awaiter(void 0, void 0, void 0, function*
             ano_editora,
             autores,
         });
-        res.redirect("/livros");
     }
     catch (error) {
         res.send("Erro ao salvar livro!");
     }
+    finally {
+        res.redirect("/livros");
+    }
 }));
 router.get("/livros", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const livros = yield Livro.findAll();
+    const livros = yield Livro.findAll({
+        order: [["isbn", "DESC"]],
+    });
     res.render("livros", { livros });
 }));
 router.get("/deletar/:isbn", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let isbn = req.params.isbn;
-    yield Livro.destroy({
-        where: { isbn },
-    }).then(() => {
+    try {
+        yield Livro.destroy({
+            where: { isbn },
+        });
+    }
+    catch (error) {
+        res.send(`Ocorreu um erro ao deletar este livro ${error}`);
+    }
+    finally {
         res.redirect("/livros");
-    });
+    }
+}));
+router.get("/editar/:isbn", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    let isbn = req.params.isbn;
+    try {
+        const livro = yield Livro.findOne({
+            where: {
+                isbn,
+            },
+        });
+        res.render("editar", { livro });
+    }
+    catch (error) {
+        res.send(`Ocorre um erro ao atualizar esse livro ${error}`);
+    }
+}));
+router.get("/atualizar", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    let { isbn, titulo, ano_editora, autores } = req.body;
+    try {
+        yield Livro.update({
+            where: {
+                isbn,
+                titulo,
+                ano_editora,
+                autores,
+            },
+        });
+    }
+    catch (error) {
+        res.send(`Ocorreu um erro ao atualizar este livro ${error}`);
+    }
+    finally {
+        res.redirect("/livros");
+    }
 }));
 module.exports = router;

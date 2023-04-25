@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cadastrar</title>
+    <title>Atualizar Livro</title>
   </head>
   <body>
     <style>
@@ -47,18 +47,50 @@
       <div style="text-align: center; margin: 5px">
         <a href="/livros">Livros Cadastrados</a>
       </div>
-      <form method="POST" action="salvar">
-        <h1>Cadastrar Livro</h1>
+
+      <form method="POST" action="atualizar">
+        <h1>Atualizar Cadastro</h1>
         <label for="nome">ISBN:</label>
-        <input type="text" id="nome" name="isbn" required />
+        <input
+          type="text"
+          value="<%=livro.isbn%>"
+          id="isbn"
+          name="isbn"
+          readonly
+          required
+        />
         <label for="titulo">Título:</label>
-        <input type="text" id="titulo" name="titulo" required />
+        <input
+          type="text"
+          value="<%=livro.titulo%>"
+          id="titulo"
+          name="titulo"
+          required
+        />
         <label for="ano_editora">Ano editora:</label>
-        <input type="text" id="ano_editora" name="ano_editora" required />
+        <input
+          type="text"
+          value="<%=livro.ano_editora%>"
+          id="ano_editora"
+          name="ano_editora"
+          required
+        />
         <label for="autor">Autores:</label>
-        <input type="text" id="autor" name="autores" required />
+        <input
+          type="text"
+          value="<%=livro.autores%>"
+          id="autor"
+          name="autores"
+          required
+        />
         <input type="submit" value="Salvar" />
       </form>
     </div>
+
+    <script>
+      isbn.addEventListener("mouseover", () => {
+        isbn.title = "Este campo não pode ser alterado";
+      });
+    </script>
   </body>
 </html>
