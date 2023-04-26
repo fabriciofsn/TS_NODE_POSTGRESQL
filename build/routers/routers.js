@@ -66,16 +66,14 @@ router.get("/editar/:isbn", (req, res) => __awaiter(void 0, void 0, void 0, func
         res.send(`Ocorre um erro ao atualizar esse livro ${error}`);
     }
 }));
-router.get("/atualizar", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post("/atualizar", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let { isbn, titulo, ano_editora, autores } = req.body;
+    let livro = yield Livro.findOne({ where: { isbn } });
     try {
-        yield Livro.update({
-            where: {
-                isbn,
-                titulo,
-                ano_editora,
-                autores,
-            },
+        livro.update({
+            titulo: titulo,
+            ano_editora: ano_editora,
+            autores: autores,
         });
     }
     catch (error) {

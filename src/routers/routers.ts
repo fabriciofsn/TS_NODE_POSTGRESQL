@@ -58,17 +58,15 @@ router.get("/editar/:isbn", async (req: Request, res: Response) => {
   }
 });
 
-router.get("/atualizar", async (req: Request, res: Response) => {
+router.post("/atualizar", async (req: Request, res: Response) => {
   let { isbn, titulo, ano_editora, autores } = req.body;
+  let livro = await Livro.findOne({ where: { isbn } });
 
   try {
-    await Livro.update({
-      where: {
-        isbn,
-        titulo,
-        ano_editora,
-        autores,
-      },
+    livro.update({
+      titulo: titulo,
+      ano_editora: ano_editora,
+      autores: autores,
     });
   } catch (error) {
     res.send(`Ocorreu um erro ao atualizar este livro ${error}`);
