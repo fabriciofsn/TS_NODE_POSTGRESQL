@@ -1,4 +1,4 @@
-import { Request, Response, Router } from "express";
+import { NextFunction, Request, Response, Router } from "express";
 const Livro = require("../database/Livro");
 
 const router: Router = Router();
@@ -17,7 +17,7 @@ router.post("/salvar", async (req: Request, res: Response) => {
       autores,
     });
   } catch (error) {
-    res.send("Erro ao salvar livro!");
+    res.status(404);
   } finally {
     res.redirect("/livros");
   }
@@ -45,7 +45,7 @@ router.get("/deletar/:isbn", async (req: Request, res: Response) => {
 });
 
 router.get("/editar/:isbn", async (req: Request, res: Response) => {
-  let isbn = req.params.isbn;
+  let isbn: string = req.params.isbn;
   try {
     const livro: Promise<[]> = await Livro.findOne({
       where: {
@@ -58,7 +58,7 @@ router.get("/editar/:isbn", async (req: Request, res: Response) => {
   }
 });
 
-router.post("/atualizar", async (req: Request, res: Response) => {
+router.post("/salvar/atualizar", async (req: Request, res: Response) => {
   let { isbn, titulo, ano_editora, autores } = req.body;
   let livro = await Livro.findOne({ where: { isbn } });
 

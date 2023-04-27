@@ -26,7 +26,7 @@ router.post("/salvar", (req, res) => __awaiter(void 0, void 0, void 0, function*
         });
     }
     catch (error) {
-        res.send("Erro ao salvar livro!");
+        res.status(404);
     }
     finally {
         res.redirect("/livros");
@@ -66,7 +66,7 @@ router.get("/editar/:isbn", (req, res) => __awaiter(void 0, void 0, void 0, func
         res.send(`Ocorre um erro ao atualizar esse livro ${error}`);
     }
 }));
-router.post("/atualizar", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post("/salvar/atualizar", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let { isbn, titulo, ano_editora, autores } = req.body;
     let livro = yield Livro.findOne({ where: { isbn } });
     try {
